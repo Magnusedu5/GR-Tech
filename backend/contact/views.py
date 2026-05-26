@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import AllowAny
 
 from .serializers import InquirySerializer
 from .emails import send_notification
@@ -9,8 +10,11 @@ from .emails import send_notification
 class ContactView(APIView):
     """
     POST /api/contact/
+    Public endpoint — no authentication required.
     Accepts a contact form submission, saves it, and fires an email notification.
     """
+    authentication_classes = []   # disable session/CSRF enforcement
+    permission_classes     = [AllowAny]
 
     def post(self, request):
         serializer = InquirySerializer(data=request.data)
