@@ -416,10 +416,10 @@ ul { list-style: none; }
   right: 0;
   z-index: 1000;
   height: var(--nav-height);
-  background: rgba(245, 240, 232, 0.0);
-  backdrop-filter: blur(0px);
-  -webkit-backdrop-filter: blur(0px);
-  border-bottom: 1px solid transparent;
+  background: rgba(26, 22, 19, 0.92);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
   transition: background 0.4s ease, border-color 0.4s ease, backdrop-filter 0.4s ease;
 }
 
