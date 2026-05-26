@@ -59,5 +59,8 @@ services:
         source: /contact
         destination: /contact.html
       - type: rewrite
+        source: /dashboard
+        destination: /dashboard.html
+      - type: rewrite
         source: /
         destination: /index.html
