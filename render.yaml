@@ -14,5 +14,20 @@ services:
         value: public, max-age=0, must-revalidate
     routes:
       - type: rewrite
-        source: /*
+        source: /home
+        destination: /index.html
+      - type: rewrite
+        source: /services
+        destination: /services.html
+      - type: rewrite
+        source: /projects
+        destination: /projects.html
+      - type: rewrite
+        source: /about
+        destination: /about.html
+      - type: rewrite
+        source: /contact
+        destination: /contact.html
+      - type: rewrite
+        source: /
         destination: /index.html
