@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600" fill="none">
+  <circle cx="300" cy="300" r="280" stroke="currentColor" stroke-width="0.5"></circle>
+  <circle cx="300" cy="300" r="210" stroke="currentColor" stroke-width="0.5"></circle>
+  <circle cx="300" cy="300" r="140" stroke="currentColor" stroke-width="0.5"></circle>
+  <line x1="300" y1="20" x2="300" y2="580" stroke="currentColor" stroke-width="0.4"></line>
+  <line x1="20" y1="300" x2="580" y2="300" stroke="currentColor" stroke-width="0.4"></line>
+  <line x1="102" y1="102" x2="498" y2="498" stroke="currentColor" stroke-width="0.4"></line>
+  <line x1="498" y1="102" x2="102" y2="498" stroke="currentColor" stroke-width="0.4"></line>
+  <polygon points="300,20 580,300 300,580 20,300" stroke="currentColor" stroke-width="0.4" fill="none"></polygon>
+  <polygon points="300,100 500,300 300,500 100,300" stroke="currentColor" stroke-width="0.25" fill="none"></polygon>
+</svg>

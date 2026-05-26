@@ -55,9 +55,24 @@
   --pad-x:        clamp(20px, 5vw, 64px);
   --section-pad:  clamp(80px, 10vw, 140px);
 
-  /* Misc */
+  /* Dark deep — footer only */
+  --dark-deep:      #0F0D0B;
+
+  /* Radius */
+  --radius-xs:    2px;
   --radius:       3px;
   --radius-lg:    6px;
+  --radius-pill:  999px;
+
+  /* Shadows */
+  --shadow-lt-sm:  0 8px 28px rgba(26, 22, 19, 0.10);
+  --shadow-lt-md:  0 12px 40px rgba(26, 22, 19, 0.10);
+  --shadow-lt-lg:  0 20px 56px rgba(26, 22, 19, 0.12);
+  --shadow-dk-sm:  0 8px 28px rgba(0, 0, 0, 0.20);
+  --shadow-dk-md:  0 16px 48px rgba(0, 0, 0, 0.25);
+  --shadow-gold:   0 8px 28px rgba(191, 140, 44, 0.28);
+
+  /* Motion */
   --ease:         220ms ease;
   --ease-slow:    420ms ease;
 }
@@ -379,10 +394,11 @@ ul { list-style: none; }
   background: transparent;
   border-radius: var(--radius);
   font-family: var(--font-mono);
-  font-size: 11px;
   letter-spacing: 0.09em;
   transition: all var(--ease);
   cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .btn-nav:hover {
   background: var(--gold);
@@ -432,6 +448,8 @@ ul { list-style: none; }
   letter-spacing: 0.02em;
   color: var(--text-inv);
   transition: color var(--ease);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 #nav.light-mode .nav-logo {
