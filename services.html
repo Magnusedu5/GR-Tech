@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — GR TECH</title>
+  <meta name="description" content="Backend architecture, immersive web development, and API integration services from GR TECH." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    /* Service row layout */
+    .svc-row {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 32px;
+      align-items: start;
+      background: var(--dark-card);
+      border: 1px solid var(--border-dk);
+      border-left: 3px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 36px 40px;
+      transition: all var(--ease-slow);
+      margin-bottom: 2px;
+    }
+    .svc-row:hover {
+      border-color: var(--border-gold);
+      border-left-color: var(--gold);
+      box-shadow: 0 4px 40px rgba(0,0,0,0.25);
+      transform: translateX(4px);
+    }
+    @media (max-width: 768px) {
+      .svc-row { grid-template-columns: 1fr; padding: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header id="nav" role="banner">
+    <div class="container">
+      <nav class="nav-inner" aria-label="Main navigation">
+        <a href="index.html" class="nav-logo" aria-label="GR TECH — home">
+          <svg class="nav-logo-mark" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M2 17l10 5 10-5" stroke="#BF8C2C" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M2 12l10 5 10-5" stroke="currentColor" stroke-width="1" stroke-linejoin="round" opacity="0.45"/>
+          </svg>
+          GR TECH
+        </a>
+        <ul class="nav-links" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html" class="active">Services</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+          <a href="contact.html" class="btn-nav">Start a Project</a>
+          <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
+    <a href="index.html"    class="mobile-link">Home</a>
+    <a href="services.html" class="mobile-link">Services</a>
+    <a href="projects.html" class="mobile-link">Projects</a>
+    <a href="about.html"    class="mobile-link">About</a>
+    <a href="contact.html"  class="mobile-link">Contact</a>
+    <a href="contact.html"  class="btn btn-gold" style="margin-top:8px;">Start a Project</a>
+  </div>
+
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <section class="panel-hero page-hero" aria-label="Services hero">
+      <div class="hero-geo-wrap" aria-hidden="true">
+        <svg viewBox="0 0 500 500" fill="none" style="width:100%;height:100%;opacity:0.04;">
+          <circle cx="250" cy="250" r="240" stroke="white" stroke-width="0.5"/>
+          <circle cx="250" cy="250" r="180" stroke="white" stroke-width="0.5"/>
+          <line x1="250" y1="10" x2="250" y2="490" stroke="white" stroke-width="0.4"/>
+          <line x1="10" y1="250" x2="490" y2="250" stroke="white" stroke-width="0.4"/>
+          <polygon points="250,10 490,250 250,490 10,250" stroke="white" stroke-width="0.3" fill="none"/>
+        </svg>
+      </div>
+      <div class="container">
+        <div class="page-hero-content">
+          <p class="eyebrow-inv fade-up" style="margin-bottom:20px;">[ Services & Expertise ]</p>
+          <h1 class="fade-up">Engineered for<br>Performance.<br><em>Built for Humans.</em></h1>
+          <p class="fade-up" style="margin-top:20px;">Three core disciplines. One unified commitment to quality.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SERVICE ROWS (dark) -->
+    <section id="services" class="panel-dark section-pad" aria-label="Service Details">
+      <div class="container">
+
+        <div class="stagger">
+
+          <!-- 01: Backend -->
+          <article class="svc-row fade-up" aria-label="Robust Backend Architecture">
+            <div>
+              <svg viewBox="0 0 48 48" fill="none" width="48" height="48" style="color:var(--gold);">
+                <rect x="6" y="6"  width="36" height="9" rx="2" stroke="currentColor" stroke-width="1.4"/>
+                <rect x="6" y="19" width="36" height="9" rx="2" stroke="currentColor" stroke-width="1.4"/>
+                <rect x="6" y="32" width="36" height="9" rx="2" stroke="currentColor" stroke-width="1.4"/>
+                <circle cx="36" cy="10.5" r="2" fill="currentColor"/>
+                <circle cx="36" cy="23.5" r="2" fill="currentColor"/>
+                <circle cx="36" cy="36.5" r="2" fill="currentColor"/>
+                <circle cx="30" cy="10.5" r="2" fill="currentColor" opacity="0.45"/>
+                <circle cx="30" cy="23.5" r="2" fill="currentColor" opacity="0.45"/>
+                <circle cx="30" cy="36.5" r="2" fill="currentColor" opacity="0.45"/>
+              </svg>
+            </div>
+            <div>
+              <p class="label-gold" style="margin-bottom:10px;">[ 01 / Backend ]</p>
+              <h2 class="display-md" style="color:var(--text-inv); margin-bottom:14px;">Robust Backend Architecture</h2>
+              <p class="body-md text-inv-mid" style="margin-bottom:22px;">
+                The foundation of any great application is its backend. We architect highly secure, scalable, and data-efficient systems using industry-standard frameworks. Whether processing complex institutional payments or managing large-scale databases, our infrastructure is rock-solid from day one.
+              </p>
+              <p class="body-md text-inv-mid" style="margin-bottom:24px;">
+                We design with redundancy, auditability, and long-term maintainability in mind — not just to meet today's requirements but to serve your needs five years from now.
+              </p>
+              <div class="tech-tags" role="list">
+                <span class="tech-tag" role="listitem">Python</span>
+                <span class="tech-tag" role="listitem">Django</span>
+                <span class="tech-tag" role="listitem">PostgreSQL</span>
+                <span class="tech-tag" role="listitem">Redis</span>
+                <span class="tech-tag" role="listitem">REST APIs</span>
+                <span class="tech-tag" role="listitem">Celery</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 02: Frontend -->
+          <article class="svc-row fade-up" aria-label="Interactive Web Development">
+            <div>
+              <svg viewBox="0 0 48 48" fill="none" width="48" height="48" style="color:var(--gold);">
+                <rect x="4" y="8" width="40" height="26" rx="2.5" stroke="currentColor" stroke-width="1.4"/>
+                <path d="M4 15h40" stroke="currentColor" stroke-width="1" opacity="0.35"/>
+                <circle cx="10" cy="11.5" r="1.5" fill="currentColor" opacity="0.45"/>
+                <circle cx="15" cy="11.5" r="1.5" fill="currentColor" opacity="0.45"/>
+                <path d="M13 26l5-5 4 4 5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16 40h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M24 34v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <p class="label-gold" style="margin-bottom:10px;">[ 02 / Frontend ]</p>
+              <h2 class="display-md" style="color:var(--text-inv); margin-bottom:14px;">Interactive &amp; Immersive Web Development</h2>
+              <p class="body-md text-inv-mid" style="margin-bottom:22px;">
+                We bring brands to life. From sleek, modern landing pages to highly engaging, 3D-immersive web interfaces, we build digital storefronts that captivate users and drive measurable engagement. Every pixel is intentional, every interaction purposeful.
+              </p>
+              <p class="body-md text-inv-mid" style="margin-bottom:24px;">
+                We believe the web is still one of the most powerful creative mediums available. Our frontend work reflects that belief — aesthetically considered, technically flawless, and optimised for performance on every device.
+              </p>
+              <div class="tech-tags" role="list">
+                <span class="tech-tag" role="listitem">React</span>
+                <span class="tech-tag" role="listitem">Three.js</span>
+                <span class="tech-tag" role="listitem">WebGL</span>
+                <span class="tech-tag" role="listitem">TypeScript</span>
+                <span class="tech-tag" role="listitem">CSS Animation</span>
+                <span class="tech-tag" role="listitem">GSAP</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 03: Integration -->
+          <article class="svc-row fade-up" aria-label="API Integration">
+            <div>
+              <svg viewBox="0 0 48 48" fill="none" width="48" height="48" style="color:var(--gold);">
+                <circle cx="9"  cy="24" r="5.5" stroke="currentColor" stroke-width="1.4"/>
+                <circle cx="39" cy="13" r="5.5" stroke="currentColor" stroke-width="1.4"/>
+                <circle cx="39" cy="35" r="5.5" stroke="currentColor" stroke-width="1.4"/>
+                <circle cx="24" cy="24" r="4"   stroke="currentColor" stroke-width="1.4"/>
+                <path d="M14.5 24h5.5"   stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                <path d="M28 22l5.5-7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                <path d="M28 26l5.5 7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <p class="label-gold" style="margin-bottom:10px;">[ 03 / Integration ]</p>
+              <h2 class="display-md" style="color:var(--text-inv); margin-bottom:14px;">Application Logic &amp; API Integration</h2>
+              <p class="body-md text-inv-mid" style="margin-bottom:22px;">
+                We connect the dots. We seamlessly integrate third-party APIs, incorporate intelligent AI-driven logic into applications, and ensure smooth data flow across all your digital platforms. Your systems, speaking fluently to one another.
+              </p>
+              <p class="body-md text-inv-mid" style="margin-bottom:24px;">
+                From payment gateways and CRM systems to LLM-powered features and custom webhooks — we have integrated it all, and we do it in a way that is maintainable, well-documented, and built for the long haul.
+              </p>
+              <div class="tech-tags" role="list">
+                <span class="tech-tag" role="listitem">REST</span>
+                <span class="tech-tag" role="listitem">GraphQL</span>
+                <span class="tech-tag" role="listitem">AI / LLM APIs</span>
+                <span class="tech-tag" role="listitem">Webhooks</span>
+                <span class="tech-tag" role="listitem">OAuth 2.0</span>
+                <span class="tech-tag" role="listitem">Stripe</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- PROCESS (light) -->
+    <section class="panel-light section-pad" aria-label="Our Process">
+      <div class="container">
+
+        <header class="section-header fade-up">
+          <p class="eyebrow">[ How We Work ]</p>
+          <div class="rule"></div>
+          <h2 class="display-lg">A Disciplined<br>Process.</h2>
+          <p class="body-md text-mid" style="margin-top:16px; max-width:480px;">
+            Good software doesn't happen by accident. Here's how we approach every engagement.
+          </p>
+        </header>
+
+        <div class="stagger" style="max-width:760px;">
+          <div class="process-step fade-up">
+            <div class="process-num">01</div>
+            <div class="process-content">
+              <h3>Discovery &amp; Scoping</h3>
+              <p>We start by deeply understanding your problem — your users, constraints, and success criteria. No assumptions. A thorough discovery saves weeks of rework later.</p>
+            </div>
+          </div>
+          <div class="process-step fade-up">
+            <div class="process-num">02</div>
+            <div class="process-content">
+              <h3>Architecture Design</h3>
+              <p>Before writing a single line of code, we design the system. Data models, API contracts, security layers, and scalability strategy are all decided up front.</p>
+            </div>
+          </div>
+          <div class="process-step fade-up">
+            <div class="process-num">03</div>
+            <div class="process-content">
+              <h3>Iterative Development</h3>
+              <p>We build in focused sprints with working software at every milestone. You see real progress — not slide decks — and can provide feedback continuously.</p>
+            </div>
+          </div>
+          <div class="process-step fade-up">
+            <div class="process-num">04</div>
+            <div class="process-content">
+              <h3>QA &amp; Security Review</h3>
+              <p>Every release goes through a structured QA and security review process. We test edge cases, not just happy paths. Your users and your data are protected.</p>
+            </div>
+          </div>
+          <div class="process-step fade-up">
+            <div class="process-num">05</div>
+            <div class="process-content">
+              <h3>Deployment &amp; Handover</h3>
+              <p>We handle deployment, write documentation, and ensure your team is fully equipped to understand and operate the system. Nothing is a black box.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- TECH STACK (dark) -->
+    <section class="panel-dark section-pad-sm" aria-label="Technology Stack">
+      <div class="container">
+
+        <header class="section-header fade-up">
+          <p class="eyebrow-inv">[ Technology Stack ]</p>
+          <div class="rule"></div>
+          <h2 class="display-md" style="color:var(--text-inv);">Proven Tools.<br>Purposeful Choices.</h2>
+        </header>
+
+        <div class="grid-4 stagger">
+
+          <div class="tech-group fade-up">
+            <h4>Backend</h4>
+            <div class="tech-item">Python 3.x</div>
+            <div class="tech-item">Django / DRF</div>
+            <div class="tech-item">PostgreSQL</div>
+            <div class="tech-item">Redis</div>
+            <div class="tech-item">Celery</div>
+          </div>
+
+          <div class="tech-group fade-up">
+            <h4>Frontend</h4>
+            <div class="tech-item">React / Next.js</div>
+            <div class="tech-item">TypeScript</div>
+            <div class="tech-item">Three.js</div>
+            <div class="tech-item">GSAP</div>
+            <div class="tech-item">Tailwind CSS</div>
+          </div>
+
+          <div class="tech-group fade-up">
+            <h4>Infrastructure</h4>
+            <div class="tech-item">AWS / GCP</div>
+            <div class="tech-item">Docker</div>
+            <div class="tech-item">Nginx</div>
+            <div class="tech-item">GitHub Actions</div>
+            <div class="tech-item">Terraform</div>
+          </div>
+
+          <div class="tech-group fade-up">
+            <h4>Integrations</h4>
+            <div class="tech-item">Stripe</div>
+            <div class="tech-item">OpenAI / Anthropic</div>
+            <div class="tech-item">Twilio</div>
+            <div class="tech-item">SendGrid</div>
+            <div class="tech-item">Webhooks</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ENGAGEMENT MODELS (light-alt) -->
+    <section class="panel-light-alt section-pad" aria-label="Engagement Models">
+      <div class="container">
+
+        <header class="section-header fade-up">
+          <p class="eyebrow">[ Engagement Models ]</p>
+          <div class="rule"></div>
+          <h2 class="display-lg">How We Work<br>With You.</h2>
+        </header>
+
+        <div class="grid-3 stagger">
+
+          <article class="engage-card fade-up" aria-label="Project-Based">
+            <div class="engage-num">01</div>
+            <h3>Project-Based</h3>
+            <p class="text-mid">A defined scope, clear deliverables, and a fixed timeline. Best for well-understood projects with a clear end state. We scope, build, and deliver.</p>
+          </article>
+
+          <article class="engage-card featured fade-up" aria-label="Zero Upfront Partnership">
+            <div class="engage-num">02</div>
+            <h3>Zero Upfront Partnership</h3>
+            <p>Our flagship model. We build and deploy at no upfront cost. You pay a predictable monthly fee for ongoing maintenance, support, and continuous improvement.</p>
+          </article>
+
+          <article class="engage-card fade-up" aria-label="Retainer">
+            <div class="engage-num">03</div>
+            <h3>Retainer</h3>
+            <p class="text-mid">Ongoing technical partnership. A dedicated block of engineering hours each month for feature development, maintenance, and strategic consultation.</p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- CTA STRIP -->
+    <div class="panel-dark cta-strip">
+      <div class="container">
+        <h2 class="fade-up">Ready to Start<br>Building?</h2>
+        <p class="fade-up">Tell us about your project and let's find the right engagement model for you.</p>
+        <div class="cta-btns fade-up">
+          <a href="contact.html" class="btn btn-gold">Get in Touch</a>
+          <a href="projects.html" class="btn btn-outline-dark">See Our Work</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer id="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="index.html" class="footer-logo" aria-label="GR TECH home">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M2 17l10 5 10-5" stroke="#BF8C2C" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M2 12l10 5 10-5" stroke="currentColor" stroke-width="1" stroke-linejoin="round" opacity="0.4"/>
+            </svg>
+            GR TECH
+          </a>
+          <p class="footer-desc">Software engineering studio specialising in backend systems, immersive web, and intelligent applications.</p>
+        </div>
+        <nav class="footer-col" aria-label="Company">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-col" aria-label="Legal">
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="footer-tagline">Building Useful Solutions. Making Lives Better.</p>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 GR TECH. All rights reserved.</p>
+        <p class="footer-badge">Engineered with precision.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

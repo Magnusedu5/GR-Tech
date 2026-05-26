@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — GR TECH</title>
+  <meta name="description" content="GR TECH was founded on one premise: technology should solve problems, not create them. Learn about our philosophy and approach." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    .principle-item {
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+      padding: 32px 0;
+      border-top: 1px solid var(--border-lt);
+    }
+    .principle-item:last-child { border-bottom: 1px solid var(--border-lt); }
+    .principle-num {
+      font-family: var(--font-display);
+      font-size: 48px;
+      color: var(--cream-deep);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 52px;
+      transition: color var(--ease);
+    }
+    .principle-item:hover .principle-num { color: var(--gold); }
+    .principle-content h3 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    .principle-content p {
+      font-size: 14px;
+      line-height: 1.72;
+      color: var(--text-mid);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header id="nav" role="banner">
+    <div class="container">
+      <nav class="nav-inner" aria-label="Main navigation">
+        <a href="index.html" class="nav-logo" aria-label="GR TECH — home">
+          <svg class="nav-logo-mark" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M2 17l10 5 10-5" stroke="#BF8C2C" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M2 12l10 5 10-5" stroke="currentColor" stroke-width="1" stroke-linejoin="round" opacity="0.45"/>
+          </svg>
+          GR TECH
+        </a>
+        <ul class="nav-links" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="about.html" class="active">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+          <a href="contact.html" class="btn-nav">Start a Project</a>
+          <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
+    <a href="index.html"    class="mobile-link">Home</a>
+    <a href="services.html" class="mobile-link">Services</a>
+    <a href="projects.html" class="mobile-link">Projects</a>
+    <a href="about.html"    class="mobile-link">About</a>
+    <a href="contact.html"  class="mobile-link">Contact</a>
+    <a href="contact.html"  class="btn btn-gold" style="margin-top:8px;">Start a Project</a>
+  </div>
+
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <section class="panel-hero page-hero" aria-label="About hero">
+      <div class="hero-geo-wrap" aria-hidden="true">
+        <svg viewBox="0 0 500 500" fill="none" style="width:100%;height:100%;opacity:0.04;">
+          <circle cx="250" cy="250" r="240" stroke="white" stroke-width="0.5"/>
+          <line x1="250" y1="10"  x2="250" y2="490" stroke="white" stroke-width="0.4"/>
+          <line x1="10"  y1="250" x2="490" y2="250" stroke="white" stroke-width="0.4"/>
+          <line x1="72"  y1="72"  x2="428" y2="428" stroke="white" stroke-width="0.35"/>
+          <line x1="428" y1="72"  x2="72"  y2="428" stroke="white" stroke-width="0.35"/>
+        </svg>
+      </div>
+      <div class="container">
+        <div class="page-hero-content">
+          <p class="eyebrow-inv fade-up" style="margin-bottom:20px;">[ About GR TECH ]</p>
+          <h1 class="fade-up">Driven<br>by Utility.</h1>
+          <p class="fade-up" style="margin-top:20px;">
+            Technology should solve problems, not create them.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- STORY (light) -->
+    <section id="about" class="panel-light section-pad" aria-label="Our Story">
+      <div class="container">
+
+        <div class="grid-2-asym">
+
+          <div class="fade-up">
+            <div class="about-watermark" aria-hidden="true">GR</div>
+            <div style="position:relative; z-index:1;">
+              <p class="eyebrow" style="margin-bottom:14px;">[ Our Story ]</p>
+              <div class="rule"></div>
+              <h2 class="display-lg" style="margin-top:0;">Founded on<br>a Simple Idea.</h2>
+            </div>
+          </div>
+
+          <div class="fade-up" style="padding-top:8px;">
+            <p class="body-lg text-mid" style="margin-bottom:24px;">
+              GR TECH was founded on a very simple premise: technology should solve problems, not create them. Behind every line of code we write is a commitment to empathetic engineering.
+            </p>
+            <p class="body-md text-mid" style="margin-bottom:24px;">
+              We understand that whether we are building a complex database or a responsive user interface, the end goal is always the same — to make someone's life, or workday, a little bit easier. Every system we design is considered from the end user's perspective first, the technical spec second.
+            </p>
+            <p class="body-md text-mid" style="margin-bottom:36px;">
+              We prioritise long-term relationships over quick launches, acting as a dedicated technical partner to the brands and institutions we work with. We don't measure success by lines of code shipped; we measure it by problems permanently solved.
+            </p>
+
+            <div style="display:flex; flex-wrap:wrap; gap:10px;">
+              <span class="philosophy-pill-lt">Long-Term Thinking</span>
+              <span class="philosophy-pill-lt">Empathetic Engineering</span>
+              <span class="philosophy-pill-lt">Structural Integrity</span>
+              <span class="philosophy-pill-lt">Radical Transparency</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- STATS (dark) -->
+    <div class="panel-dark" aria-label="By the Numbers">
+      <div class="container">
+        <div class="stat-bar">
+          <div class="stat-bar-inner stagger">
+            <div class="stat-item">
+              <span class="stat-num" data-target="100" data-suffix="%">100%</span>
+              <span class="stat-label">Client Retention Rate</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num" data-target="0" data-suffix=" Upfront">0 Upfront</span>
+              <span class="stat-label">Cost on Select Projects</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num" data-target="24" data-suffix="h">24h</span>
+              <span class="stat-label">Response Guarantee</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- PRINCIPLES (light-alt) -->
+    <section class="panel-light-alt section-pad" aria-label="Our Principles">
+      <div class="container">
+
+        <header class="section-header fade-up">
+          <p class="eyebrow">[ How We Think ]</p>
+          <div class="rule"></div>
+          <h2 class="display-lg">Engineering<br>Principles.</h2>
+          <p class="body-md text-mid" style="margin-top:16px; max-width:480px;">
+            These aren't values we put on a wall. They're the actual rules we operate by.
+          </p>
+        </header>
+
+        <div class="stagger" style="max-width:760px;">
+
+          <div class="principle-item fade-up">
+            <div class="principle-num">01</div>
+            <div class="principle-content">
+              <h3>Security is Non-Negotiable</h3>
+              <p>We treat security as a first-class concern in every project, regardless of size. Threat modelling, input validation, least-privilege access, and audit logging are standard — not optional. A system that handles data is a system that carries responsibility.</p>
+            </div>
+          </div>
+
+          <div class="principle-item fade-up">
+            <div class="principle-num">02</div>
+            <div class="principle-content">
+              <h3>Clarity Over Cleverness</h3>
+              <p>We write code that a competent engineer can read, understand, and maintain without needing the original author present. Abstraction should reduce complexity — not hide it. We resist the temptation to be clever when clear and direct will do.</p>
+            </div>
+          </div>
+
+          <div class="principle-item fade-up">
+            <div class="principle-num">03</div>
+            <div class="principle-content">
+              <h3>The End User is the Client</h3>
+              <p>We hold a distinction between our clients (the people who hire us) and our users (the people who use what we build). We design and build with the end user's experience as the ultimate benchmark of success, not the spec sheet.</p>
+            </div>
+          </div>
+
+          <div class="principle-item fade-up">
+            <div class="principle-num">04</div>
+            <div class="principle-content">
+              <h3>Honest Communication, Always</h3>
+              <p>If we don't know something, we say so. If a technical decision has trade-offs, we explain them plainly. If a deadline is at risk, we tell you before it's a crisis. Transparency builds trust, and trust is what makes long-term partnerships work.</p>
+            </div>
+          </div>
+
+          <div class="principle-item fade-up">
+            <div class="principle-num">05</div>
+            <div class="principle-content">
+              <h3>Design for the Long Run</h3>
+              <p>Systems that are quick to build but brittle to maintain cost more over time. We architect for longevity: proper documentation, sensible naming conventions, automated tests, and a codebase that is genuinely pleasant for the next engineer to work in.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- CTA STRIP -->
+    <div class="panel-dark cta-strip">
+      <div class="container">
+        <h2 class="fade-up">Work With a Team<br>That Cares.</h2>
+        <p class="fade-up">We take the problems we work on seriously. Let's solve yours.</p>
+        <div class="cta-btns fade-up">
+          <a href="contact.html"  class="btn btn-gold">Get in Touch</a>
+          <a href="services.html" class="btn btn-outline-dark">Our Services</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer id="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="index.html" class="footer-logo" aria-label="GR TECH home">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M2 17l10 5 10-5" stroke="#BF8C2C" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M2 12l10 5 10-5" stroke="currentColor" stroke-width="1" stroke-linejoin="round" opacity="0.4"/>
+            </svg>
+            GR TECH
+          </a>
+          <p class="footer-desc">Software engineering studio specialising in backend systems, immersive web, and intelligent applications.</p>
+        </div>
+        <nav class="footer-col" aria-label="Company">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-col" aria-label="Legal">
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="footer-tagline">Building Useful Solutions. Making Lives Better.</p>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 GR TECH. All rights reserved.</p>
+        <p class="footer-badge">Engineered with precision.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

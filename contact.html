@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — GR TECH</title>
+  <meta name="description" content="Start a conversation with GR TECH. Zero pressure, full transparency." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    /* Form on dark background variant */
+    .form-input-inv,
+    .form-select-inv,
+    .form-textarea-inv {
+      width: 100%;
+      background: rgba(255, 250, 240, 0.055);
+      border: 1px solid var(--border-dk-str);
+      border-radius: var(--radius);
+      padding: 13px 16px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--text-inv);
+      transition: border-color var(--ease), box-shadow var(--ease);
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .form-select-inv {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235A5448' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+    .form-select-inv option { background: var(--dark); color: var(--text-inv); }
+    .form-textarea-inv { resize: vertical; min-height: 120px; }
+    .form-input-inv:focus,
+    .form-select-inv:focus,
+    .form-textarea-inv:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(191,140,44,0.1);
+    }
+    .form-input-inv::placeholder,
+    .form-textarea-inv::placeholder { color: var(--text-inv-mute); }
+
+    .btn-submit-inv {
+      width: 100%;
+      padding: 15px 28px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      background: var(--gold);
+      color: var(--dark);
+      border: 1px solid var(--gold);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all var(--ease);
+    }
+    .btn-submit-inv:hover {
+      background: var(--gold-light);
+      border-color: var(--gold-light);
+      box-shadow: 0 8px 28px rgba(191,140,44,0.28);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header id="nav" role="banner">
+    <div class="container">
+      <nav class="nav-inner" aria-label="Main navigation">
+        <a href="index.html" class="nav-logo" aria-label="GR TECH — home">
+          <svg class="nav-logo-mark" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M2 17l10 5 10-5" stroke="#BF8C2C" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M2 12l10 5 10-5" stroke="currentColor" stroke-width="1" stroke-linejoin="round" opacity="0.45"/>
+          </svg>
+          GR TECH
+        </a>
+        <ul class="nav-links" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+          <a href="#contact-form" class="btn-nav">Send a Message</a>
+          <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
+    <a href="index.html"    class="mobile-link">Home</a>
+    <a href="services.html" class="mobile-link">Services</a>
+    <a href="projects.html" class="mobile-link">Projects</a>
+    <a href="about.html"    class="mobile-link">About</a>
+    <a href="contact.html"  class="mobile-link">Contact</a>
+    <a href="#contact-form" class="btn btn-gold" style="margin-top:8px;">Send a Message</a>
+  </div>
+
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <section class="panel-hero page-hero" aria-label="Contact hero">
+      <div class="hero-geo-wrap" aria-hidden="true">
+        <svg viewBox="0 0 500 500" fill="none" style="width:100%;height:100%;opacity:0.04;">
+          <circle cx="250" cy="250" r="240" stroke="white" stroke-width="0.5"/>
+          <circle cx="250" cy="250" r="160" stroke="white" stroke-width="0.4"/>
+          <circle cx="250" cy="250" r="80"  stroke="white" stroke-width="0.3"/>
+        </svg>
+      </div>
+      <div class="container">
+        <div class="page-hero-content">
+          <p class="eyebrow-inv fade-up" style="margin-bottom:20px;">[ Get in Touch ]</p>
+          <h1 class="fade-up">Let's Build<br>Something Useful<br><em>Together.</em></h1>
+          <p class="fade-up" style="margin-top:20px;">
+            Zero pressure. Full transparency. We respond within 24 hours.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- CONTACT (dark) -->
+    <section id="contact" class="panel-dark section-pad" aria-label="Contact Form">
+      <div class="container">
+
+        <div class="grid-2-asym">
+
+          <!-- Left: copy + deco -->
+          <div class="fade-up">
+            <p class="eyebrow-inv" style="margin-bottom:14px;">[ Start the Conversation ]</p>
+            <div class="rule"></div>
+            <h2 class="display-md" style="color:var(--text-inv); margin-bottom:20px;">Have a Problem?<br>We Have Engineers.</h2>
+            <p class="body-md text-inv-mid" style="margin-bottom:48px;">
+              Whether you have a fully-formed spec or just a vague problem that needs solving — reach out. We'll get on a call, understand what you need, and tell you honestly what we can do and how.
+            </p>
+
+            <div style="display:flex; flex-direction:column; gap:18px; margin-bottom:48px;">
+              <div class="deco-line-inv">Response within 24 hours</div>
+              <div class="deco-line-inv">Free consultation call, no commitment</div>
+              <div class="deco-line-inv">Zero upfront cost on select projects</div>
+              <div class="deco-line-inv">Honest scoping, no surprises</div>
+            </div>
+
+            <!-- Stat mini -->
+            <div style="padding:24px 28px; border:1px solid var(--border-dk-str); border-left:3px solid var(--gold); border-radius:var(--radius);">
+              <p class="eyebrow-inv" style="margin-bottom:8px;">[ Partnership Model ]</p>
+              <p class="body-md text-inv-mid" style="font-size:13px;">
+                For the right project, we cover all development costs upfront. You pay only a monthly maintenance fee. <a href="services.html" style="color:var(--gold); text-decoration:underline; text-decoration-color: rgba(191,140,44,0.4);">Learn more →</a>
+              </p>
+            </div>
+          </div>
+
+          <!-- Right: form -->
+          <div class="fade-up">
+            <form class="contact-form" id="contact-form" novalidate aria-label="Contact form"
+                  style="display:flex; flex-direction:column; gap:20px;">
+
+              <div class="form-group">
+                <label for="name" class="form-label-inv">YOUR NAME</label>
+                <input type="text" id="name" name="name" class="form-input-inv"
+                       placeholder="Jane Smith" required aria-required="true" autocomplete="name"/>
+              </div>
+
+              <div class="form-group">
+                <label for="email" class="form-label-inv">EMAIL ADDRESS</label>
+                <input type="email" id="email" name="email" class="form-input-inv"
+                       placeholder="jane@yourcompany.com" required aria-required="true" autocomplete="email"/>
+              </div>
+
+              <div class="form-group">
+                <label for="project-type" class="form-label-inv">PROJECT TYPE</label>
+                <select id="project-type" name="project-type" class="form-select-inv" required aria-required="true">
+                  <option value="" disabled selected>Select a category</option>
+                  <option value="backend">Backend Development</option>
+                  <option value="web">Web Development</option>
+                  <option value="api">API Integration</option>
+                  <option value="partnership">Partnership Model</option>
+                  <option value="other">Other / Not Sure</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="message" class="form-label-inv">TELL US ABOUT YOUR PROBLEM</label>
+                <textarea id="message" name="message" class="form-textarea-inv" rows="5"
+                          placeholder="Describe the challenge you're facing or the solution you have in mind..."
+                          required aria-required="true"></textarea>
+              </div>
+
+              <button type="submit" class="btn-submit-inv" id="submit-btn">
+                Send Message →
+              </button>
+
+              <div class="form-success" id="form-success" role="alert" aria-live="polite">
+                ✓ Message received. We'll be in touch within 24 hours.
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- FAQ (light) -->
+    <section id="faq-section" class="panel-light section-pad" aria-label="Frequently Asked Questions">
+      <div class="container">
+
+        <header class="section-header fade-up">
+          <p class="eyebrow">[ FAQ ]</p>
+          <div class="rule"></div>
+          <h2 class="display-lg">Common Questions.</h2>
+        </header>
+
+        <div style="max-width:720px;" class="stagger">
+
+          <div class="faq-item fade-up">
+            <div class="faq-q">
+              How does the zero-upfront-cost model actually work?
+              <div class="faq-icon" aria-hidden="true">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                For select partnerships, we cover the full cost of development and deployment. You pay nothing to get started. In return, you commit to a monthly maintenance and support retainer once the system is live. This aligns our incentives — we only succeed if the system we build genuinely works for you.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item fade-up">
+            <div class="faq-q">
+              How long does a typical project take?
+              <div class="faq-icon" aria-hidden="true">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                It depends on scope. A focused landing page or small integration can be done in 1–2 weeks. A full backend system or immersive web application typically takes 6–14 weeks from kickoff to deployment. We give honest timelines during scoping and flag risks early.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item fade-up">
+            <div class="faq-q">
+              Do you work with early-stage startups or only established businesses?
+              <div class="faq-icon" aria-hidden="true">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Both. We enjoy working with early-stage founders who have a clear problem and need technical execution. We also partner with established businesses that want to modernise legacy systems or add new digital capabilities. The common thread is a real problem worth solving.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item fade-up">
+            <div class="faq-q">
+              What happens after the project is delivered?
+              <div class="faq-icon" aria-hidden="true">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                We don't disappear after delivery. All projects include full documentation and a handover process. For ongoing clients, we offer retainer and maintenance arrangements. We've found that the best outcomes come from long-term technical partnerships — not one-off deliveries.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item fade-up">
+            <div class="faq-q">
+              Can you work with our existing codebase?
+              <div class="faq-icon" aria-hidden="true">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Yes. We frequently onboard into existing systems — auditing the codebase, understanding the architecture, and then contributing in a way that improves rather than disrupts what's already there. If there are serious structural issues, we'll tell you plainly and propose a path forward.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item fade-up">
+            <div class="faq-q">
+              What technologies do you use?
+              <div class="faq-icon" aria-hidden="true">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Our core stack is Python/Django for backends, React/Next.js for frontends, and PostgreSQL for data. For immersive web we use Three.js and WebGL. For infrastructure, we favour AWS and GCP with Docker and GitHub Actions. We choose tools based on the problem, not preference.
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer id="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="index.html" class="footer-logo" aria-label="GR TECH home">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M2 17l10 5 10-5" stroke="#BF8C2C" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M2 12l10 5 10-5" stroke="currentColor" stroke-width="1" stroke-linejoin="round" opacity="0.4"/>
+            </svg>
+            GR TECH
+          </a>
+          <p class="footer-desc">Software engineering studio specialising in backend systems, immersive web, and intelligent applications.</p>
+        </div>
+        <nav class="footer-col" aria-label="Company">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-col" aria-label="Legal">
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="footer-tagline">Building Useful Solutions. Making Lives Better.</p>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 GR TECH. All rights reserved.</p>
+        <p class="footer-badge">Engineered with precision.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

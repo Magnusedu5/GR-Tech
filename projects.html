@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — GR TECH</title>
+  <meta name="description" content="A portfolio of software engineering work by GR TECH — fintech systems, immersive web, and intelligent applications." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    .pv-dark   { background: linear-gradient(135deg, #1A1613 0%, #2A2118 100%); }
+    .pv-dark-b { background: linear-gradient(135deg, #14161A 0%, #1E2330 100%); }
+    .pv-dark-c { background: linear-gradient(135deg, #131118 0%, #1E1A2A 100%); }
+    .pv-dark-d { background: linear-gradient(135deg, #101510 0%, #192019 100%); }
+    .pv-dark-e { background: linear-gradient(135deg, #161210 0%, #231C15 100%); }
+    .pv-dark-f { background: linear-gradient(135deg, #0E1118 0%, #161C2A 100%); }
+
+    .pv-grid-overlay {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(191,140,44,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(191,140,44,0.07) 1px, transparent 1px);
+      background-size: 18px 18px;
+    }
+
+    .pv-layers {
+      position: relative; width: 110px; height: 65px;
+      transform-style: preserve-3d;
+      transform: rotateX(20deg) rotateY(-20deg);
+      animation: layerFloat 6s ease-in-out infinite;
+    }
+    @keyframes layerFloat {
+      0%,100% { transform: rotateX(20deg) rotateY(-20deg) translateY(0); }
+      50%      { transform: rotateX(20deg) rotateY(-20deg) translateY(-8px); }
+    }
+    .pv-layer {
+      position: absolute; width: 100%; height: 100%;
+      border: 1.5px solid; border-radius: 4px;
+    }
+    .pv-layer:nth-child(1) { border-color: rgba(191,140,44,0.65); transform: translateZ(26px); }
+    .pv-layer:nth-child(2) { border-color: rgba(191,140,44,0.38); transform: translateZ(8px); }
+    .pv-layer:nth-child(3) { border-color: rgba(191,140,44,0.18); transform: translateZ(-10px); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header id="nav" role="banner">
+    <div class="container">
+      <nav class="nav-inner" aria-label="Main navigation">
+        <a href="index.html" class="nav-logo" aria-label="GR TECH — home">
+          <svg class="nav-logo-mark" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M2 17l10 5 10-5" stroke="#BF8C2C" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M2 12l10 5 10-5" stroke="currentColor" stroke-width="1" stroke-linejoin="round" opacity="0.45"/>
+          </svg>
+          GR TECH
+        </a>
+        <ul class="nav-links" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="projects.html" class="active">Projects</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+          <a href="contact.html" class="btn-nav">Start a Project</a>
+          <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
+    <a href="index.html"    class="mobile-link">Home</a>
+    <a href="services.html" class="mobile-link">Services</a>
+    <a href="projects.html" class="mobile-link">Projects</a>
+    <a href="about.html"    class="mobile-link">About</a>
+    <a href="contact.html"  class="mobile-link">Contact</a>
+    <a href="contact.html"  class="btn btn-gold" style="margin-top:8px;">Start a Project</a>
+  </div>
+
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <section class="panel-hero page-hero" aria-label="Projects hero">
+      <div class="hero-geo-wrap" aria-hidden="true">
+        <svg viewBox="0 0 500 500" fill="none" style="width:100%;height:100%;opacity:0.04;">
+          <circle cx="250" cy="250" r="240" stroke="white" stroke-width="0.5"/>
+          <circle cx="250" cy="250" r="170" stroke="white" stroke-width="0.4"/>
+          <circle cx="250" cy="250" r="110" stroke="white" stroke-width="0.3"/>
+          <polygon points="250,10 490,250 250,490 10,250" stroke="white" stroke-width="0.35" fill="none"/>
+        </svg>
+      </div>
+      <div class="container">
+        <div class="page-hero-content">
+          <p class="eyebrow-inv fade-up" style="margin-bottom:20px;">[ Portfolio ]</p>
+          <h1 class="fade-up">Solutions<br>in Action.</h1>
+          <p class="fade-up" style="margin-top:20px;">
+            A look at the types of technical challenges we solve — and how we solve them.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- PROJECT GRID (light) -->
+    <section id="projects" class="panel-light section-pad" aria-label="Project Portfolio">
+      <div class="container">
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs fade-up" role="tablist" aria-label="Filter projects by category">
+          <button class="filter-tab active" data-filter="all"     role="tab" aria-selected="true">All Work</button>
+          <button class="filter-tab"        data-filter="backend" role="tab" aria-selected="false">Backend</button>
+          <button class="filter-tab"        data-filter="web"     role="tab" aria-selected="false">Web</button>
+          <button class="filter-tab"        data-filter="ai"      role="tab" aria-selected="false">AI / Logic</button>
+        </div>
+
+        <div class="proj-grid stagger">
+
+          <!-- 1. Fintech -->
+          <article class="proj-card fade-up" data-cat="backend" aria-label="Secure Transaction Platforms">
+            <div class="proj-visual pv-dark" style="position:relative;overflow:hidden;">
+              <div class="pv-grid-overlay"></div>
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+                <svg width="100" height="80" viewBox="0 0 100 80" fill="none">
+                  <rect x="28" y="8"  width="44" height="52" rx="4" stroke="#BF8C2C" stroke-width="1.5"/>
+                  <path d="M28 22h44" stroke="#BF8C2C" stroke-width="1" opacity="0.45"/>
+                  <rect x="38" y="2" width="24" height="8" rx="2" stroke="#BF8C2C" stroke-width="1.5"/>
+                  <path d="M42 46l4 4 8-8" stroke="#BF8C2C" stroke-width="1.5" stroke-linecap="round"/>
+                  <circle cx="50" cy="38" r="8" stroke="#BF8C2C" stroke-width="1" opacity="0.35"/>
+                </svg>
+              </div>
+              <div class="proj-accent-bar" style="background:var(--gold);"></div>
+            </div>
+            <div class="proj-body">
+              <span class="proj-tag">[ Fintech / Backend ]</span>
+              <h3>Secure Transaction Platforms</h3>
+              <p>Reliable, high-stakes backend systems for processing institutional fees and large-scale payments with absolute security and full audit trails.</p>
+              <span class="proj-pill">Backend Systems</span>
+            </div>
+          </article>
+
+          <!-- 2. 3D Web -->
+          <article class="proj-card fade-up" data-cat="web" aria-label="Next-Gen Web Experiences">
+            <div class="proj-visual pv-dark-b" style="position:relative;overflow:hidden;perspective:400px;">
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+                <div class="pv-layers">
+                  <div class="pv-layer"></div>
+                  <div class="pv-layer"></div>
+                  <div class="pv-layer"></div>
+                </div>
+              </div>
+              <div class="proj-accent-bar" style="background:var(--gold-light);"></div>
+            </div>
+            <div class="proj-body">
+              <span class="proj-tag">[ Web / Immersive ]</span>
+              <h3>Next-Gen Web Experiences</h3>
+              <p>Cutting-edge, 3D interactive websites that elevate brand presence for modern businesses seeking genuine digital distinction.</p>
+              <span class="proj-pill">Web Development</span>
+            </div>
+          </article>
+
+          <!-- 3. AI / Neural -->
+          <article class="proj-card fade-up" data-cat="ai" aria-label="Intelligent Applications">
+            <div class="proj-visual pv-dark-c" style="position:relative;overflow:hidden;">
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+                <svg width="170" height="130" viewBox="0 0 170 130" fill="none">
+                  <circle cx="25"  cy="32"  r="4" stroke="#BF8C2C" stroke-width="1.3"/>
+                  <circle cx="25"  cy="62"  r="4" stroke="#BF8C2C" stroke-width="1.3"/>
+                  <circle cx="25"  cy="92"  r="4" stroke="#BF8C2C" stroke-width="1.3"/>
+                  <circle cx="73"  cy="22"  r="5" stroke="#BF8C2C" stroke-width="1.3"/>
+                  <circle cx="73"  cy="52"  r="5" fill="#BF8C2C" fill-opacity="0.14" stroke="#BF8C2C" stroke-width="1.3"/>
+                  <circle cx="73"  cy="82"  r="5" stroke="#BF8C2C" stroke-width="1.3"/>
+                  <circle cx="73"  cy="107" r="5" stroke="#BF8C2C" stroke-width="1.3"/>
+                  <circle cx="122" cy="42"  r="4" stroke="#BF8C2C" stroke-width="1.3"/>
+                  <circle cx="122" cy="72"  r="4" stroke="#BF8C2C" stroke-width="1.3"/>
+                  <circle cx="122" cy="97"  r="4" stroke="#BF8C2C" stroke-width="1.3"/>
+                  <circle cx="152" cy="57"  r="4" fill="#BF8C2C" fill-opacity="0.28" stroke="#BF8C2C" stroke-width="1.3"/>
+                  <circle cx="152" cy="82"  r="4" stroke="#BF8C2C" stroke-width="1.3"/>
+                  <line x1="29" y1="32"  x2="68" y2="22"  stroke="#BF8C2C" stroke-width="0.5" opacity="0.4"/>
+                  <line x1="29" y1="32"  x2="68" y2="52"  stroke="#BF8C2C" stroke-width="0.5" opacity="0.65"/>
+                  <line x1="29" y1="62"  x2="68" y2="52"  stroke="#BF8C2C" stroke-width="0.5" opacity="0.7"/>
+                  <line x1="29" y1="62"  x2="68" y2="82"  stroke="#BF8C2C" stroke-width="0.5" opacity="0.5"/>
+                  <line x1="29" y1="92"  x2="68" y2="82"  stroke="#BF8C2C" stroke-width="0.5" opacity="0.6"/>
+                  <line x1="29" y1="92"  x2="68" y2="107" stroke="#BF8C2C" stroke-width="0.5" opacity="0.35"/>
+                  <line x1="78" y1="22"  x2="118" y2="42" stroke="#BF8C2C" stroke-width="0.5" opacity="0.5"/>
+                  <line x1="78" y1="52"  x2="118" y2="42" stroke="#BF8C2C" stroke-width="0.5" opacity="0.65"/>
+                  <line x1="78" y1="52"  x2="118" y2="72" stroke="#BF8C2C" stroke-width="0.5" opacity="0.7"/>
+                  <line x1="78" y1="82"  x2="118" y2="72" stroke="#BF8C2C" stroke-width="0.5" opacity="0.55"/>
+                  <line x1="78" y1="82"  x2="118" y2="97" stroke="#BF8C2C" stroke-width="0.5" opacity="0.6"/>
+                  <line x1="126" y1="42" x2="148" y2="57" stroke="#BF8C2C" stroke-width="0.5" opacity="0.6"/>
+                  <line x1="126" y1="72" x2="148" y2="57" stroke="#BF8C2C" stroke-width="0.5" opacity="0.55"/>
+                  <line x1="126" y1="72" x2="148" y2="82" stroke="#BF8C2C" stroke-width="0.5" opacity="0.7"/>
+                  <line x1="126" y1="97" x2="148" y2="82" stroke="#BF8C2C" stroke-width="0.5" opacity="0.4"/>
+                </svg>
+              </div>
+              <div class="proj-accent-bar" style="background:var(--gold-dim);"></div>
+            </div>
+            <div class="proj-body">
+              <span class="proj-tag">[ AI / Logic ]</span>
+              <h3>Intelligent Applications</h3>
+              <p>Engineering the logic and integrating intelligent APIs for interactive, math-based applications and digital tools that genuinely think.</p>
+              <span class="proj-pill">App Engineering</span>
+            </div>
+          </article>
+
+          <!-- 4. E-commerce Platform -->
+          <article class="proj-card fade-up" data-cat="backend" aria-label="E-commerce Platform">
+            <div class="proj-visual pv-dark-e" style="position:relative;overflow:hidden;">
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+                <svg width="110" height="90" viewBox="0 0 110 90" fill="none">
+                  <rect x="5" y="15" width="100" height="60" rx="4" stroke="#BF8C2C" stroke-width="1.4" opacity="0.7"/>
+                  <path d="M5 28h100" stroke="#BF8C2C" stroke-width="1" opacity="0.35"/>
+                  <rect x="20" y="38" width="28" height="22" rx="2" stroke="#BF8C2C" stroke-width="1.2" opacity="0.55"/>
+                  <rect x="62" y="38" width="28" height="10" rx="2" fill="#BF8C2C" fill-opacity="0.18" stroke="#BF8C2C" stroke-width="1.2"/>
+                  <path d="M62 56h28" stroke="#BF8C2C" stroke-width="1" opacity="0.4"/>
+                  <circle cx="15" cy="21.5" r="2" fill="#BF8C2C" opacity="0.5"/>
+                  <circle cx="21" cy="21.5" r="2" fill="#BF8C2C" opacity="0.5"/>
+                  <circle cx="27" cy="21.5" r="2" fill="#BF8C2C" opacity="0.3"/>
+                </svg>
+              </div>
+              <div class="proj-accent-bar" style="background:var(--gold);"></div>
+            </div>
+            <div class="proj-body">
+              <span class="proj-tag">[ E-commerce / Backend ]</span>
+              <h3>Custom Commerce Platforms</h3>
+              <p>Bespoke e-commerce backends built from scratch — custom product catalogues, payment processing, inventory management, and fulfilment integrations.</p>
+              <span class="proj-pill">Backend Systems</span>
+            </div>
+          </article>
+
+          <!-- 5. Brand Website -->
+          <article class="proj-card fade-up" data-cat="web" aria-label="Brand & Marketing Sites">
+            <div class="proj-visual pv-dark-f" style="position:relative;overflow:hidden;">
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+                <svg width="150" height="110" viewBox="0 0 150 110" fill="none">
+                  <!-- Browser frame -->
+                  <rect x="10" y="12" width="130" height="86" rx="5" stroke="#BF8C2C" stroke-width="1.3" opacity="0.6"/>
+                  <path d="M10 26h130" stroke="#BF8C2C" stroke-width="1" opacity="0.35"/>
+                  <circle cx="22" cy="19" r="3" stroke="#BF8C2C" stroke-width="1.1" opacity="0.4"/>
+                  <circle cx="31" cy="19" r="3" stroke="#BF8C2C" stroke-width="1.1" opacity="0.4"/>
+                  <!-- Content blocks -->
+                  <rect x="22" y="34" width="50" height="28" rx="2" stroke="#BF8C2C" stroke-width="1" opacity="0.4"/>
+                  <path d="M22 72h106" stroke="#BF8C2C" stroke-width="1" opacity="0.25"/>
+                  <path d="M22 80h80"  stroke="#BF8C2C" stroke-width="0.8" opacity="0.2"/>
+                  <path d="M22 87h60"  stroke="#BF8C2C" stroke-width="0.8" opacity="0.15"/>
+                  <!-- Hero type suggestion -->
+                  <path d="M82 38h46"  stroke="#BF8C2C" stroke-width="2" opacity="0.6" stroke-linecap="round"/>
+                  <path d="M82 46h36"  stroke="#BF8C2C" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+                  <path d="M82 54h26"  stroke="#BF8C2C" stroke-width="1.2" opacity="0.3" stroke-linecap="round"/>
+                  <rect x="82" y="60" width="40" height="10" rx="2" fill="#BF8C2C" fill-opacity="0.22"/>
+                </svg>
+              </div>
+              <div class="proj-accent-bar" style="background:var(--gold-light);"></div>
+            </div>
+            <div class="proj-body">
+              <span class="proj-tag">[ Web / Marketing ]</span>
+              <h3>Brand &amp; Marketing Sites</h3>
+              <p>Conversion-focused marketing sites with strong visual design, fast load times, and clear calls to action. Built to represent your brand at its best.</p>
+              <span class="proj-pill">Web Development</span>
+            </div>
+          </article>
+
+          <!-- 6. AI Tool -->
+          <article class="proj-card fade-up" data-cat="ai" aria-label="AI-Powered Tools">
+            <div class="proj-visual pv-dark-d" style="position:relative;overflow:hidden;">
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+                <svg width="140" height="110" viewBox="0 0 140 110" fill="none">
+                  <!-- Document / chat interface -->
+                  <rect x="15" y="10" width="110" height="80" rx="4" stroke="#BF8C2C" stroke-width="1.3" opacity="0.5"/>
+                  <!-- Chat bubbles -->
+                  <rect x="25" y="22" width="70" height="14" rx="7" stroke="#BF8C2C" stroke-width="1.2" opacity="0.55"/>
+                  <rect x="45" y="42" width="70" height="14" rx="7" fill="#BF8C2C" fill-opacity="0.14" stroke="#BF8C2C" stroke-width="1.2" opacity="0.7"/>
+                  <rect x="25" y="62" width="60" height="14" rx="7" stroke="#BF8C2C" stroke-width="1.2" opacity="0.5"/>
+                  <!-- Cursor / sparkle -->
+                  <path d="M105 25 L110 35 L100 32 Z" fill="#BF8C2C" opacity="0.55"/>
+                  <circle cx="70" cy="95" r="3" fill="#BF8C2C" opacity="0.4"/>
+                  <circle cx="80" cy="95" r="3" fill="#BF8C2C" opacity="0.6"/>
+                  <circle cx="90" cy="95" r="3" fill="#BF8C2C" opacity="0.4"/>
+                </svg>
+              </div>
+              <div class="proj-accent-bar" style="background:var(--gold-dim);"></div>
+            </div>
+            <div class="proj-body">
+              <span class="proj-tag">[ AI / Integration ]</span>
+              <h3>AI-Powered Tools</h3>
+              <p>Applications that leverage LLMs and AI APIs to automate complex reasoning tasks — from document analysis to intelligent tutoring systems.</p>
+              <span class="proj-pill">App Engineering</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- CTA STRIP -->
+    <div class="panel-dark cta-strip">
+      <div class="container">
+        <h2 class="fade-up">Your Project<br>Could Be Next.</h2>
+        <p class="fade-up">Bring us your problem. We'll engineer the solution.</p>
+        <div class="cta-btns fade-up">
+          <a href="contact.html"  class="btn btn-gold">Start a Conversation</a>
+          <a href="services.html" class="btn btn-outline-dark">Our Services</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer id="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="index.html" class="footer-logo" aria-label="GR TECH home">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M2 17l10 5 10-5" stroke="#BF8C2C" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M2 12l10 5 10-5" stroke="currentColor" stroke-width="1" stroke-linejoin="round" opacity="0.4"/>
+            </svg>
+            GR TECH
+          </a>
+          <p class="footer-desc">Software engineering studio specialising in backend systems, immersive web, and intelligent applications.</p>
+        </div>
+        <nav class="footer-col" aria-label="Company">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-col" aria-label="Legal">
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="footer-tagline">Building Useful Solutions. Making Lives Better.</p>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 GR TECH. All rights reserved.</p>
+        <p class="footer-badge">Engineered with precision.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
