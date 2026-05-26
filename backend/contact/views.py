@@ -102,7 +102,7 @@ class InquiryListView(APIView):
 
 
 class InquiryDetailView(APIView):
-    """GET /api/inquiries/{id}/ — single inquiry. PATCH to update status."""
+    """GET /api/inquiries/{id}/ — single inquiry. PATCH to update status. DELETE to remove."""
     authentication_classes = [TokenAuthentication]
     permission_classes     = [IsAuthenticated]
 
@@ -129,3 +129,11 @@ class InquiryDetailView(APIView):
 
         serializer.save()
         return Response(serializer.data)
+
+    def delete(self, request, pk):
+        inquiry = self._get_object(pk)
+        if not inquiry:
+            return Response({'error': 'Not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+        inquiry.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

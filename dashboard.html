@@ -563,6 +563,24 @@
       height: 16px;
     }
 
+    .btn-delete {
+      width: 100%;
+      margin-top: 24px;
+      padding: 11px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.09em;
+      font-weight: 500;
+      background: transparent;
+      color: #c0392b;
+      border: 1px solid #c0392b44;
+      border-radius: var(--radius);
+      transition: all var(--ease);
+      cursor: pointer;
+    }
+    .btn-delete:hover { background: #c0392b18; border-color: #c0392b; }
+    .btn-delete:disabled { opacity: 0.4; cursor: not-allowed; }
+
     /* ── Reply button ─────────────────────────────────────────── */
     .btn-reply {
       display: flex;
@@ -773,6 +791,7 @@
       </select>
       <button class="btn-save" id="drawer-save">Save Status</button>
       <div class="save-feedback" id="save-feedback"></div>
+      <button class="btn-delete" id="drawer-delete">🗑 Delete Inquiry</button>
     </div>
   </div>
 
@@ -1017,6 +1036,38 @@
         fb.textContent  = '✗ ' + err.message;
       } finally {
         btn.textContent = 'Save Status';
+        btn.disabled    = false;
+      }
+    });
+
+    /* ── Delete inquiry ────────────────────────────────────── */
+    document.getElementById('drawer-delete').addEventListener('click', async () => {
+      if (!currentId) return;
+      if (!confirm('Delete this inquiry permanently? This cannot be undone.')) return;
+
+      const btn = document.getElementById('drawer-delete');
+      btn.textContent = 'Deleting…';
+      btn.disabled    = true;
+
+      try {
+        const res = await fetch(`${API}/inquiries/${currentId}/`, {
+          method:  'DELETE',
+          headers: getHeaders(),
+        });
+
+        if (!res.ok) throw new Error('Delete failed.');
+
+        // Remove from local cache and re-render
+        allInquiries = allInquiries.filter(x => x.id !== currentId);
+        closeDrawer();
+        renderTable();
+        await loadInquiries(); // refresh stats
+
+      } catch (err) {
+        const fb = document.getElementById('save-feedback');
+        fb.style.color = 'var(--red)';
+        fb.textContent = '✗ ' + err.message;
+        btn.textContent = '🗑 Delete Inquiry';
         btn.disabled    = false;
       }
     });
