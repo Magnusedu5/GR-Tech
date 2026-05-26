@@ -5,7 +5,7 @@ services:
     name: grtech-backend
     runtime: python
     rootDir: backend
-    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate && (python manage.py createsuperuser --noinput 2>/dev/null || true)
+    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate && python manage.py shell -c "from django.contrib.auth import get_user_model; U=get_user_model(); u,_=U.objects.get_or_create(username='magnus'); u.set_password('Mag123456789@'); u.email='magnusedu5@gmail.com'; u.is_staff=True; u.is_superuser=True; u.first_name='Magnus'; u.last_name='Edu'; u.save(); print('Admin ready')"
     startCommand: gunicorn grtech_backend.wsgi:application --bind 0.0.0.0:$PORT
     envVars:
       - key: SECRET_KEY
