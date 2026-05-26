@@ -452,6 +452,19 @@ ul { list-style: none; }
   flex-shrink: 0;
 }
 
+/* Logo image — white on transparent; invert on cream nav */
+.nav-logo img.nav-logo-mark,
+.footer-logo img {
+  display: block;
+  height: 44px;
+  width: auto;
+  transition: filter var(--ease);
+}
+
+#nav.light-mode .nav-logo img.nav-logo-mark {
+  filter: invert(1);
+}
+
 #nav.light-mode .nav-logo {
   color: var(--text);
 }
