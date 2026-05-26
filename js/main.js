@@ -13,23 +13,69 @@ const navLinks   = document.querySelectorAll('.nav-links a[data-section]');
 const sections   = document.querySelectorAll('section[id]');
 
 // IDs of sections that have a light (cream) background
-const LIGHT_SECTIONS = new Set(['value', 'projects', 'contact', 'faq-section']);
+const LIGHT_SECTIONS = new Set(['value', 'projects', 'contact', 'faq-section', 'about', 'services', 'principles']);
 
-// Scrolled class (add border)
+// Determine nav mode based on scroll position and visible sections
+function updateNavMode() {
+  if (!nav) return;
+
+  // Find which section's top is closest above the nav bottom
+  let currentSection = null;
+  const navBottom = nav.getBoundingClientRect().bottom;
+
+  document.querySelectorAll('section[id], div[id]').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top <= navBottom) {
+      currentSection = el;
+    }
+  });
+
+  if (currentSection) {
+    const bg = window.getComputedStyle(currentSection).backgroundColor;
+    // If background is cream/light (high red+green, low blue) → light-mode
+    const isLight = isLightBg(currentSection);
+    nav.classList.toggle('light-mode', isLight);
+  } else {
+    nav.classList.remove('light-mode');
+  }
+}
+
+function isLightBg(el) {
+  // Walk up to find first element with a non-transparent background
+  let target = el;
+  while (target && target !== document.body) {
+    const bg = window.getComputedStyle(target).backgroundColor;
+    if (bg && bg !== 'rgba(0, 0, 0, 0)' && bg !== 'transparent') {
+      // Parse RGB values
+      const m = bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+      if (m) {
+        const [r, g, b] = [+m[1], +m[2], +m[3]];
+        // Luminance: light if > 180 average
+        return (r + g + b) / 3 > 180;
+      }
+    }
+    target = target.parentElement;
+  }
+  return false;
+}
+
+// Scrolled class + nav mode on scroll
 window.addEventListener('scroll', () => {
   if (!nav) return;
   nav.classList.toggle('scrolled', window.scrollY > 40);
+  updateNavMode();
 }, { passive: true });
 
-// Active link + light-mode nav via IntersectionObserver
+// Also run on load
+updateNavMode();
+
+// Active link via IntersectionObserver
 if (sections.length && nav) {
   const sectionObs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
       const id = entry.target.id;
-
       navLinks.forEach(a => a.classList.toggle('active', a.dataset.section === id));
-      nav.classList.toggle('light-mode', LIGHT_SECTIONS.has(id));
     });
   }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
 
