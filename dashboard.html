@@ -1059,6 +1059,8 @@
 
         // Remove from local cache and re-render
         allInquiries = allInquiries.filter(x => x.id !== currentId);
+        btn.textContent = '🗑 Delete Inquiry';
+        btn.disabled    = false;
         closeDrawer();
         renderTable();
         await loadInquiries(); // refresh stats
