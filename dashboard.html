@@ -1049,6 +1049,7 @@
       btn.textContent = 'Deleting…';
       btn.disabled    = true;
 
+      let deleted = false;
       try {
         const res = await fetch(`${API}/inquiries/${currentId}/`, {
           method:  'DELETE',
@@ -1056,19 +1057,21 @@
         });
 
         if (!res.ok) throw new Error('Delete failed.');
+        deleted = true;
 
         // Remove from local cache and re-render
         allInquiries = allInquiries.filter(x => x.id !== currentId);
-        btn.textContent = '🗑 Delete Inquiry';
-        btn.disabled    = false;
         closeDrawer();
         renderTable();
         await loadInquiries(); // refresh stats
 
       } catch (err) {
-        const fb = document.getElementById('save-feedback');
-        fb.style.color = 'var(--red)';
-        fb.textContent = '✗ ' + err.message;
+        if (!deleted) {
+          const fb = document.getElementById('save-feedback');
+          fb.style.color = 'var(--red)';
+          fb.textContent = '✗ ' + err.message;
+        }
+      } finally {
         btn.textContent = '🗑 Delete Inquiry';
         btn.disabled    = false;
       }
