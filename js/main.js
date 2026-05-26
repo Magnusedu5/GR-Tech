@@ -143,12 +143,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 /* ——————————————————————————————————
    CONTACT FORM
 —————————————————————————————————— */
+const API_BASE   = 'https://grtech-backend.onrender.com';
 const form       = document.getElementById('contact-form');
 const submitBtn  = document.getElementById('submit-btn');
 const successMsg = document.getElementById('form-success');
 
 if (form) {
-  form.addEventListener('submit', e => {
+  form.addEventListener('submit', async e => {
     e.preventDefault();
 
     const name        = form.querySelector('#name')?.value.trim();
@@ -157,22 +158,46 @@ if (form) {
     const message     = form.querySelector('#message')?.value.trim();
     const emailRe     = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!name)                          return shakeField(form.querySelector('#name'));
-    if (!email || !emailRe.test(email)) return shakeField(form.querySelector('#email'));
-    if (!projectType)                   return shakeField(form.querySelector('#project-type'));
+    if (!name)                           return shakeField(form.querySelector('#name'));
+    if (!email || !emailRe.test(email))  return shakeField(form.querySelector('#email'));
+    if (!projectType)                    return shakeField(form.querySelector('#project-type'));
     if (!message || message.length < 10) return shakeField(form.querySelector('#message'));
 
     if (submitBtn) {
-      submitBtn.textContent    = 'Sending...';
-      submitBtn.disabled       = true;
-      submitBtn.style.opacity  = '0.7';
+      submitBtn.textContent   = 'Sending...';
+      submitBtn.disabled      = true;
+      submitBtn.style.opacity = '0.7';
     }
 
-    setTimeout(() => {
-      if (submitBtn)  submitBtn.style.display = 'none';
-      if (successMsg) successMsg.style.display = 'block';
-      form.reset();
-    }, 1200);
+    try {
+      const res = await fetch(`${API_BASE}/api/contact/`, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({
+          name,
+          email,
+          project_type: projectType,
+          message,
+        }),
+      });
+
+      if (res.ok) {
+        if (submitBtn)  submitBtn.style.display  = 'none';
+        if (successMsg) successMsg.style.display = 'block';
+        form.reset();
+      } else {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data?.errors ? JSON.stringify(data.errors) : 'Submission failed');
+      }
+    } catch (err) {
+      if (submitBtn) {
+        submitBtn.textContent   = 'Send Message';
+        submitBtn.disabled      = false;
+        submitBtn.style.opacity = '1';
+      }
+      alert('Something went wrong. Please try again or email us directly.');
+      console.error(err);
+    }
   });
 }
 
