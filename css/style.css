@@ -453,10 +453,15 @@ ul { list-style: none; }
 }
 
 /* Logo image — white on transparent; invert on cream nav */
-.nav-logo img.nav-logo-mark,
+.nav-logo img.nav-logo-mark {
+  display: block;
+  height: 32px;
+  width: auto;
+}
+
 .footer-logo img {
   display: block;
-  height: 44px;
+  height: 40px;
   width: auto;
   transition: filter var(--ease);
 }
