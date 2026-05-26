@@ -455,7 +455,7 @@ ul { list-style: none; }
 /* Logo image — white on transparent; invert on cream nav */
 .nav-logo img.nav-logo-mark {
   display: block;
-  height: 5px;
+  height: 10px;
   width: auto;
 }
 
