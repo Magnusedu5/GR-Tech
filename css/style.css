@@ -1645,9 +1645,15 @@ ul { list-style: none; }
 /* ——————————————————————————————————
    29. RESPONSIVE BREAKPOINTS
 —————————————————————————————————— */
+
+/* ── Large tablet (≤1024px) ── */
 @media (max-width: 1024px) {
   .grid-4 {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-2-asym {
+    gap: 48px;
   }
 
   .about-teaser {
@@ -1660,27 +1666,58 @@ ul { list-style: none; }
   }
 }
 
+/* ── Mobile (≤768px) ── */
 @media (max-width: 768px) {
   :root {
-    --nav-height: 80px;
-    --section-pad: 72px;
+    --nav-height: 72px;
+    --section-pad: 64px;
   }
 
+  /* Nav: hide desktop links, show hamburger */
   .nav-links,
   .nav-right .btn-nav {
     display: none;
   }
 
-  .hamburger { display: flex; }
+  .hamburger {
+    display: flex;
+    padding: 10px; /* larger tap target */
+  }
 
+  /* Override inline height:70px on nav logo */
+  .nav-logo img.nav-logo-mark {
+    height: 44px !important;
+  }
+
+  /* Hide large decorative geo to prevent overflow */
+  .hero-geo { display: none; }
+
+  /* Hero: fill visible viewport height (svh = safe on iOS) */
+  .home-hero {
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+
+  /* Grids: all single column */
   .grid-2,
   .grid-2-asym,
   .grid-3,
   .proj-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 24px;
   }
 
+  /* Override any inline gap values */
+  .grid-2      { gap: 36px !important; }
+  .grid-2-asym { gap: 28px !important; }
+
+  /* Neutralise inline position:sticky on grid children */
+  .grid-2-asym > * {
+    position: relative !important;
+    top: auto !important;
+  }
+
+  /* Stats: 2×2 grid */
   .stat-bar-inner {
     flex-wrap: wrap;
     gap: 0;
@@ -1690,12 +1727,19 @@ ul { list-style: none; }
     flex: 0 0 50%;
     border-right: none;
     border-bottom: 1px solid var(--border-dk);
-    padding: 28px 0;
+    padding: 24px 12px;
   }
 
-  .stat-item:nth-child(odd) { border-right: 1px solid var(--border-dk); }
-  .stat-item:last-child { border-bottom: none; }
+  .stat-item:nth-child(odd)             { border-right: 1px solid var(--border-dk); }
+  .stat-item:nth-child(3),
+  .stat-item:nth-child(4)               { border-bottom: none; }
+  .stat-item:last-child                 { border-bottom: none; border-right: none; }
 
+  /* Partnership */
+  .partnership-vert-label { display: none; }
+  .partnership-big        { font-size: clamp(44px, 12vw, 80px) !important; }
+
+  /* Process steps: vertical layout */
   .steps {
     flex-direction: column;
     align-items: flex-start;
@@ -1709,6 +1753,9 @@ ul { list-style: none; }
     margin-left: 20px;
   }
 
+  .process-num { font-size: 40px; width: 44px; }
+
+  /* CTA buttons: full width */
   .hero-ctas,
   .cta-btns {
     flex-direction: column;
@@ -1718,15 +1765,31 @@ ul { list-style: none; }
   .hero-ctas .btn,
   .cta-btns .btn {
     justify-content: center;
+    text-align: center;
   }
 
+  /* About decorative bracket clips on narrow screens */
+  .about-bracket { display: none; }
+
+  .about-teaser-left,
+  .about-teaser-right {
+    padding: 52px 24px;
+  }
+
+  /* Section headers: tighter on mobile */
+  .section-header { margin-bottom: 40px; }
+
+  /* Page hero (inner pages) */
+  .page-hero { min-height: 42vh; }
+
+  /* Project filter tabs */
+  .filter-tabs { gap: 6px; }
+
+  /* Footer */
   .footer-top {
     flex-direction: column;
+    gap: 28px;
   }
-
-  .partnership-vert-label { display: none; }
-
-  .filter-tabs { gap: 6px; }
 
   .footer-bottom {
     flex-direction: column;
@@ -1734,11 +1797,61 @@ ul { list-style: none; }
     gap: 6px;
   }
 
-  .process-num { font-size: 40px; width: 44px; }
-
-  .page-hero { min-height: 44vh; }
+  /* iOS: prevent auto-zoom on input focus (needs ≥16px) */
+  .form-input,
+  .form-select,
+  .form-textarea,
+  .form-input-inv,
+  .form-select-inv,
+  .form-textarea-inv {
+    font-size: 16px;
+  }
 }
 
+/* ── Small mobile (≤480px) ── */
 @media (max-width: 480px) {
+  :root {
+    --nav-height: 64px;
+    --section-pad: 52px;
+  }
+
+  /* Further reduce logo on very small screens */
+  .nav-logo img.nav-logo-mark {
+    height: 36px !important;
+  }
+
+  /* Grid-4 to single column */
   .grid-4 { grid-template-columns: 1fr; }
+
+  /* Stats: 1 per row */
+  .stat-item {
+    flex: 0 0 100%;
+    border-right: none !important;
+    border-bottom: 1px solid var(--border-dk) !important;
+    padding: 20px 0;
+  }
+  .stat-item:last-child { border-bottom: none !important; }
+
+  /* Prevent long words from overflowing headings */
+  .display-xl,
+  .display-lg,
+  .display-md,
+  .hero-h1,
+  .cta-strip h2,
+  .page-hero h1 {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Tighter section headers */
+  .section-header { margin-bottom: 28px; }
+
+  /* About teaser: tighter padding */
+  .about-teaser-left,
+  .about-teaser-right {
+    padding: 48px 20px;
+  }
+
+  /* Process steps: tighter gap */
+  .process-step { gap: 16px; }
 }
