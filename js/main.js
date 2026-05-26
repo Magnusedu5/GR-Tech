@@ -12,62 +12,63 @@ const nav        = document.getElementById('nav');
 const navLinks   = document.querySelectorAll('.nav-links a[data-section]');
 const sections   = document.querySelectorAll('section[id]');
 
-// IDs of sections that have a light (cream) background
-const LIGHT_SECTIONS = new Set(['value', 'projects', 'contact', 'faq-section', 'about', 'services', 'principles']);
+// Classes that mean the section has a light/cream background
+const LIGHT_PANELS = ['panel-light', 'panel-light-alt'];
 
-// Determine nav mode based on scroll position and visible sections
-function updateNavMode() {
+// Apply light/dark mode to nav based on a panel element
+function applyNavTheme(el) {
+  if (!nav || !el) return;
+  const isLight = LIGHT_PANELS.some(c => el.classList.contains(c));
+  nav.classList.toggle('light-mode', isLight);
+}
+
+// Scroll-based detection: find the panel element whose top is
+// closest to (but not above) the nav's bottom edge.
+function detectNavTheme() {
   if (!nav) return;
-
-  // Find which section's top is closest above the nav bottom
-  let currentSection = null;
   const navBottom = nav.getBoundingClientRect().bottom;
+  let best = null, bestTop = -Infinity;
 
-  document.querySelectorAll('section[id], div[id]').forEach(el => {
-    const rect = el.getBoundingClientRect();
-    if (rect.top <= navBottom) {
-      currentSection = el;
-    }
+  document.querySelectorAll('[class*="panel-"]').forEach(el => {
+    // Skip fixed elements (e.g. mobile-menu overlay)
+    if (window.getComputedStyle(el).position === 'fixed') return;
+    const { top } = el.getBoundingClientRect();
+    if (top <= navBottom && top > bestTop) { bestTop = top; best = el; }
   });
 
-  if (currentSection) {
-    const bg = window.getComputedStyle(currentSection).backgroundColor;
-    // If background is cream/light (high red+green, low blue) → light-mode
-    const isLight = isLightBg(currentSection);
-    nav.classList.toggle('light-mode', isLight);
-  } else {
-    nav.classList.remove('light-mode');
-  }
+  applyNavTheme(best);
 }
 
-function isLightBg(el) {
-  // Walk up to find first element with a non-transparent background
-  let target = el;
-  while (target && target !== document.body) {
-    const bg = window.getComputedStyle(target).backgroundColor;
-    if (bg && bg !== 'rgba(0, 0, 0, 0)' && bg !== 'transparent') {
-      // Parse RGB values
-      const m = bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
-      if (m) {
-        const [r, g, b] = [+m[1], +m[2], +m[3]];
-        // Luminance: light if > 180 average
-        return (r + g + b) / 3 > 180;
-      }
-    }
-    target = target.parentElement;
-  }
-  return false;
+// IntersectionObserver: fires even when scroll events are throttled on mobile.
+// Creates a 1px detection slice right at the nav's bottom edge.
+function setupNavThemeObserver() {
+  if (!nav) return;
+  const h = nav.offsetHeight;
+  const vp = window.innerHeight;
+  const bottomMargin = Math.max(vp - h - 1, 0);
+  const margin = `-${h}px 0px -${bottomMargin}px 0px`;
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) applyNavTheme(entry.target);
+    });
+  }, { rootMargin: margin, threshold: 0 });
+
+  document.querySelectorAll('[class*="panel-"]').forEach(el => {
+    if (window.getComputedStyle(el).position !== 'fixed') obs.observe(el);
+  });
 }
 
-// Scrolled class + nav mode on scroll
+// Scrolled border class + fallback scroll detection
 window.addEventListener('scroll', () => {
   if (!nav) return;
   nav.classList.toggle('scrolled', window.scrollY > 40);
-  updateNavMode();
+  detectNavTheme();
 }, { passive: true });
 
-// Also run on load
-updateNavMode();
+// Run both on load
+detectNavTheme();
+setupNavThemeObserver();
 
 // Active link via IntersectionObserver
 if (sections.length && nav) {

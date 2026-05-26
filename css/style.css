@@ -550,8 +550,8 @@ ul { list-style: none; }
 
 .hamburger span {
   display: block;
-  width: 22px;
-  height: 1px;
+  width: 16px;
+  height: 1.5px;
   background: var(--text-inv);
   transition: all 0.3s ease;
   transform-origin: center;
@@ -1681,7 +1681,7 @@ ul { list-style: none; }
 
   .hamburger {
     display: flex;
-    padding: 10px; /* larger tap target */
+    padding: 6px;
   }
 
   /* Override inline height:70px on nav logo */
