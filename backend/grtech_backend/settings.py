@@ -89,8 +89,8 @@ CORS_ALLOWED_ORIGINS = config(
     default='http://localhost:3000'
 ).split(',')
 
-CORS_ALLOW_METHODS = ['GET', 'POST', 'OPTIONS']
-CORS_ALLOW_HEADERS = ['content-type', 'accept']
+CORS_ALLOW_METHODS = ['GET', 'POST', 'PATCH', 'OPTIONS']
+CORS_ALLOW_HEADERS = ['content-type', 'accept', 'authorization']
 
 # ── DRF ───────────────────────────────────────────────────
 REST_FRAMEWORK = {
