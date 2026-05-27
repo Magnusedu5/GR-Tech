@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&display=swap" rel="stylesheet" />
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
   <style>
     /* ── Tokens ─────────────────────────────────────────────── */
     :root {
@@ -563,6 +564,111 @@
       height: 16px;
     }
 
+    /* ── Gmail compose panel ─────────────────────────────────── */
+    .compose-wrap {
+      background: #1e1a16;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+    .compose-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+    .compose-title {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .compose-from {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-mute);
+    }
+    .compose-field {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+    }
+    .compose-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-mute);
+      width: 46px;
+      flex-shrink: 0;
+    }
+    .compose-to {
+      color: var(--text);
+      font-size: 12px;
+    }
+    .compose-subject {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: var(--text);
+      font-size: 12px;
+      font-family: var(--font-body);
+      outline: none;
+      padding: 0;
+    }
+    .compose-body {
+      width: 100%;
+      margin-top: 10px;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      font-size: 13px;
+      font-family: var(--font-body);
+      resize: vertical;
+      outline: none;
+      padding: 4px 0;
+      box-sizing: border-box;
+      line-height: 1.6;
+    }
+    .compose-body::placeholder { color: var(--text-mute); }
+    .btn-send {
+      flex: 1;
+      padding: 10px;
+      background: var(--gold);
+      color: var(--dark);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      border-radius: var(--radius);
+      transition: background var(--ease);
+      cursor: pointer;
+    }
+    .btn-send:hover     { background: var(--gold-light); }
+    .btn-send:disabled  { opacity: 0.5; cursor: not-allowed; }
+    .btn-cancel-compose {
+      padding: 10px 14px;
+      background: transparent;
+      color: var(--text-mute);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all var(--ease);
+    }
+    .btn-cancel-compose:hover { border-color: var(--border-str); color: var(--text); }
+    .compose-feedback {
+      margin-top: 8px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.07em;
+      min-height: 14px;
+    }
     .btn-delete {
       width: 100%;
       margin-top: 24px;
@@ -775,13 +881,37 @@
     </div>
 
     <div class="drawer-footer">
-      <a class="btn-reply" id="drawer-reply" href="#" target="_blank" rel="noopener noreferrer">
-        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M2 4l4-3 4 3v7H2V4z" stroke-linejoin="round"/>
-          <path d="M5 13V8h3v5" stroke-linejoin="round"/>
+
+      <!-- ── Gmail compose ─────────────────────────────────── -->
+      <div class="compose-wrap" id="compose-wrap" style="display:none;">
+        <div class="compose-header">
+          <span class="compose-title">Reply via Gmail</span>
+          <span class="compose-from">from: grtech.hq@gmail.com</span>
+        </div>
+        <div class="compose-field">
+          <span class="compose-label">To</span>
+          <span class="compose-to" id="compose-to">—</span>
+        </div>
+        <div class="compose-field">
+          <span class="compose-label">Subject</span>
+          <input class="compose-subject" id="compose-subject" type="text" value="Re: Your GR TECH Inquiry" />
+        </div>
+        <textarea class="compose-body" id="compose-body" placeholder="Type your reply…" rows="6"></textarea>
+        <div style="display:flex;gap:8px;margin-top:8px;">
+          <button class="btn-send" id="compose-send">Send</button>
+          <button class="btn-cancel-compose" id="compose-cancel">Cancel</button>
+        </div>
+        <div class="compose-feedback" id="compose-feedback"></div>
+      </div>
+
+      <button class="btn-reply" id="btn-open-compose">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 4h16v12H4z" stroke-linejoin="round"/>
+          <polyline points="4,4 12,12 20,4" stroke-linejoin="round"/>
         </svg>
-        Reply by Email
-      </a>
+        Reply via Gmail
+      </button>
+
       <div class="status-label" style="margin-top:16px;">Update Status</div>
       <select class="status-select" id="drawer-status-select">
         <option value="new">New</option>
@@ -978,8 +1108,14 @@
       document.getElementById('drawer-status-badge').innerHTML =
         `<span class="badge badge-${i.status}">${esc(i.status_display)}</span>`;
       document.getElementById('drawer-status-select').value  = i.status;
-      document.getElementById('drawer-reply').href           = `https://mail.google.com/mail/?view=cm&to=${encodeURIComponent(i.email)}&su=${encodeURIComponent('Re: Your GR TECH Inquiry')}`;
       document.getElementById('save-feedback').textContent   = '';
+
+      // Pre-fill compose fields
+      document.getElementById('compose-to').textContent      = i.email;
+      document.getElementById('compose-subject').value       = `Re: Your GR TECH Inquiry`;
+      document.getElementById('compose-body').value          = '';
+      document.getElementById('compose-feedback').textContent = '';
+      document.getElementById('compose-wrap').style.display  = 'none';
 
       document.getElementById('drawer').classList.add('open');
       document.getElementById('drawer-overlay').classList.add('open');
@@ -993,6 +1129,123 @@
 
     document.getElementById('drawer-close').addEventListener('click', closeDrawer);
     document.getElementById('drawer-overlay').addEventListener('click', closeDrawer);
+
+    /* ── Gmail OAuth + Send ────────────────────────────────── */
+    const GMAIL_CLIENT_ID = '725687185144-dsfdrto44246489tt6dk5s1mkisj15f5.apps.googleusercontent.com';
+    const GMAIL_SCOPE     = 'https://www.googleapis.com/auth/gmail.send';
+    let gmailToken        = null;
+    let tokenClient       = null;
+
+    function initGoogleAuth() {
+      if (!window.google) return;
+      tokenClient = google.accounts.oauth2.initTokenClient({
+        client_id: GMAIL_CLIENT_ID,
+        scope:     GMAIL_SCOPE,
+        hint:      'grtech.hq@gmail.com',
+        callback:  (resp) => {
+          if (resp.error) {
+            showComposeFeedback('✗ Google auth failed: ' + resp.error, 'red');
+            return;
+          }
+          gmailToken = resp.access_token;
+          doSendEmail();
+        },
+      });
+    }
+
+    // Wait for GSI library to load then init
+    window.addEventListener('load', () => { setTimeout(initGoogleAuth, 500); });
+
+    function buildMimeMessage(to, subject, body) {
+      const from    = 'grtech.hq@gmail.com';
+      const message = [
+        `From: GR TECH <${from}>`,
+        `To: ${to}`,
+        `Subject: ${subject}`,
+        `Content-Type: text/plain; charset=utf-8`,
+        `MIME-Version: 1.0`,
+        ``,
+        body,
+      ].join('\r\n');
+      // Base64url encode
+      return btoa(unescape(encodeURIComponent(message)))
+        .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    }
+
+    async function doSendEmail() {
+      const to      = document.getElementById('compose-to').textContent.trim();
+      const subject = document.getElementById('compose-subject').value.trim();
+      const body    = document.getElementById('compose-body').value.trim();
+      const sendBtn = document.getElementById('compose-send');
+
+      if (!body) {
+        showComposeFeedback('✗ Please write a message first.', 'red');
+        return;
+      }
+
+      sendBtn.textContent = 'Sending…';
+      sendBtn.disabled    = true;
+
+      try {
+        const raw = buildMimeMessage(to, subject, body);
+        const res = await fetch('https://gmail.googleapis.com/gmail/v1/users/me/messages/send', {
+          method:  'POST',
+          headers: {
+            'Authorization': `Bearer ${gmailToken}`,
+            'Content-Type':  'application/json',
+          },
+          body: JSON.stringify({ raw }),
+        });
+
+        if (res.status === 401) {
+          gmailToken = null;
+          showComposeFeedback('✗ Token expired. Click Send again to re-authenticate.', 'red');
+          return;
+        }
+        if (!res.ok) throw new Error('Gmail API error ' + res.status);
+
+        showComposeFeedback('✓ Email sent!', 'green');
+        document.getElementById('compose-body').value = '';
+
+      } catch (err) {
+        showComposeFeedback('✗ ' + err.message, 'red');
+      } finally {
+        sendBtn.textContent = 'Send';
+        sendBtn.disabled    = false;
+      }
+    }
+
+    function showComposeFeedback(msg, color) {
+      const fb = document.getElementById('compose-feedback');
+      fb.textContent  = msg;
+      fb.style.color  = color === 'green' ? 'var(--green)' : '#e05555';
+    }
+
+    // Open compose panel
+    document.getElementById('btn-open-compose').addEventListener('click', () => {
+      document.getElementById('compose-wrap').style.display = 'block';
+      document.getElementById('compose-body').focus();
+    });
+
+    // Cancel compose
+    document.getElementById('compose-cancel').addEventListener('click', () => {
+      document.getElementById('compose-wrap').style.display = 'none';
+      document.getElementById('compose-feedback').textContent = '';
+    });
+
+    // Send button — request token if needed, then send
+    document.getElementById('compose-send').addEventListener('click', () => {
+      if (!tokenClient) {
+        showComposeFeedback('✗ Google auth not ready yet. Try again in a moment.', 'red');
+        return;
+      }
+      if (gmailToken) {
+        doSendEmail();
+      } else {
+        // Trigger OAuth consent popup
+        tokenClient.requestAccessToken({ prompt: 'consent' });
+      }
+    });
 
     /* ── Save status ───────────────────────────────────────── */
     document.getElementById('drawer-save').addEventListener('click', async () => {
