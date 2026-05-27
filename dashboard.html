@@ -775,7 +775,7 @@
     </div>
 
     <div class="drawer-footer">
-      <a class="btn-reply" id="drawer-reply" href="#">
+      <a class="btn-reply" id="drawer-reply" href="#" target="_blank" rel="noopener noreferrer">
         <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.5">
           <path d="M2 4l4-3 4 3v7H2V4z" stroke-linejoin="round"/>
           <path d="M5 13V8h3v5" stroke-linejoin="round"/>
@@ -846,6 +846,7 @@
         setUser(data.first_name || data.username);
         showDashboard();
         loadInquiries();
+        resetIdleTimer();
 
       } catch (err) {
         loginError.textContent     = err.message;
@@ -856,12 +857,7 @@
     });
 
     /* ── Logout ───────────────────────────────────────────── */
-    document.getElementById('logout-btn').addEventListener('click', () => {
-      localStorage.removeItem('gr_token');
-      token = null;
-      document.getElementById('dashboard').style.display = 'none';
-      document.getElementById('login-screen').style.display = 'flex';
-    });
+    document.getElementById('logout-btn').addEventListener('click', logout);
 
     /* ── Show/hide screens ────────────────────────────────── */
     function showDashboard() {
@@ -982,7 +978,7 @@
       document.getElementById('drawer-status-badge').innerHTML =
         `<span class="badge badge-${i.status}">${esc(i.status_display)}</span>`;
       document.getElementById('drawer-status-select').value  = i.status;
-      document.getElementById('drawer-reply').href           = `mailto:${i.email}?subject=Re: Your GR TECH Inquiry`;
+      document.getElementById('drawer-reply').href           = `https://mail.google.com/mail/?view=cm&to=${encodeURIComponent(i.email)}&su=${encodeURIComponent('Re: Your GR TECH Inquiry')}`;
       document.getElementById('save-feedback').textContent   = '';
 
       document.getElementById('drawer').classList.add('open');
@@ -1091,6 +1087,33 @@
         + ' ' + d.toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' });
     }
 
+    /* ── Inactivity timeout (30 min) ───────────────────────── */
+    const IDLE_MS = 30 * 60 * 1000; // 30 minutes
+    let idleTimer = null;
+
+    function resetIdleTimer() {
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => {
+        if (token) {
+          logout();
+          alert('You have been logged out due to inactivity.');
+        }
+      }, IDLE_MS);
+    }
+
+    function logout() {
+      localStorage.removeItem('gr_token');
+      localStorage.removeItem('gr_username');
+      token = null;
+      clearTimeout(idleTimer);
+      document.getElementById('dashboard').style.display    = 'none';
+      document.getElementById('login-screen').style.display = 'flex';
+    }
+
+    ['mousedown', 'mousemove', 'keydown', 'touchstart', 'scroll'].forEach(evt =>
+      document.addEventListener(evt, resetIdleTimer, { passive: true })
+    );
+
     /* ── Auto-login if token exists ────────────────────────── */
     if (token) {
       // Verify token is still valid
@@ -1099,9 +1122,9 @@
           setUser(localStorage.getItem('gr_username') || 'Admin');
           showDashboard();
           loadInquiries();
+          resetIdleTimer();
         } else {
-          localStorage.removeItem('gr_token');
-          token = null;
+          logout();
         }
       }).catch(() => {});
     }
