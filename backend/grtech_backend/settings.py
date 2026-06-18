@@ -63,7 +63,7 @@ _turso_token = config('TURSO_AUTH_TOKEN', default='')
 if _turso_url:
     DATABASES = {
         'default': {
-            'ENGINE': 'libsql.db.backends.libsql',
+            'ENGINE': 'turso_backend',
             'NAME': _turso_url,
             'OPTIONS': {'auth_token': _turso_token},
         }
