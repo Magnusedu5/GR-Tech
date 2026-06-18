@@ -57,10 +57,22 @@ TEMPLATES = [
 WSGI_APPLICATION = 'grtech_backend.wsgi.application'
 
 # ── Database ──────────────────────────────────────────────
-DATABASE_URL = config('DATABASE_URL', default=f'sqlite:///{BASE_DIR / "db.sqlite3"}')
-DATABASES = {
-    'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600)
-}
+_turso_url   = config('TURSO_DATABASE_URL', default='')
+_turso_token = config('TURSO_AUTH_TOKEN', default='')
+
+if _turso_url:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'libsql.db.backends.libsql',
+            'NAME': _turso_url,
+            'OPTIONS': {'auth_token': _turso_token},
+        }
+    }
+else:
+    DATABASE_URL = config('DATABASE_URL', default=f'sqlite:///{BASE_DIR / "db.sqlite3"}')
+    DATABASES = {
+        'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600)
+    }
 
 # ── Auth password validators ───────────────────────────────
 AUTH_PASSWORD_VALIDATORS = [
