@@ -12,6 +12,7 @@ import re
 import libsql_experimental as libsql
 from django.db.backends.sqlite3 import base as sqlite3_base
 from django.core.exceptions import ImproperlyConfigured
+from .schema import DatabaseSchemaEditor
 
 _FORMAT_TO_QMARK = re.compile(r'(?<!%)%s')
 
@@ -69,6 +70,8 @@ class LibsqlCursorWrapper:
 
 
 class DatabaseWrapper(sqlite3_base.DatabaseWrapper):
+    SchemaEditorClass = DatabaseSchemaEditor
+
 
     def get_connection_params(self):
         settings = self.settings_dict
@@ -88,13 +91,34 @@ class DatabaseWrapper(sqlite3_base.DatabaseWrapper):
         return LibsqlCursorWrapper(self.connection.cursor())
 
     def _set_autocommit(self, autocommit):
-        # libsql_experimental doesn't expose isolation_level.
-        # Remote connections auto-commit each statement, which is fine
-        # for this app's simple insert/select workload.
+        # libsql_experimental doesn't expose isolation_level — no-op.
+        pass
+
+    def _start_transaction_under_autocommit(self):
+        # Don't issue explicit BEGIN — libsql remote connections auto-commit
+        # each statement. An explicit BEGIN would conflict with the connection's
+        # internal streaming state and raise "cannot start a transaction within
+        # a transaction" errors during Django's nested atomic() usage.
         pass
 
     def _savepoint_allowed(self):
         return self.in_atomic_block
+
+    def disable_constraint_checking(self):
+        # Tell Django FKs are already disabled (avoids PRAGMA calls that
+        # would trigger NotSupportedError inside schema migrations).
+        return True
+
+    def enable_constraint_checking(self):
+        # No-op: FK enforcement is handled at the application level.
+        # Enabling FKs between migrations causes NotSupportedError on
+        # the next migration's schema editor entry.
+        pass
+
+    def check_constraints(self, table_names=None):
+        # FK constraint checking via PRAGMA is unreliable over libsql remote;
+        # skip it — Django validates constraints at the model level anyway.
+        pass
 
     def is_in_memory_db(self):
         return False
