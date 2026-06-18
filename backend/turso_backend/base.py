@@ -82,9 +82,7 @@ class DatabaseWrapper(sqlite3_base.DatabaseWrapper):
         }
 
     def get_new_connection(self, conn_params):
-        conn = libsql.connect(**conn_params)
-        conn.execute('PRAGMA foreign_keys = ON')
-        return conn
+        return libsql.connect(**conn_params)
 
     def create_cursor(self, name=None):
         return LibsqlCursorWrapper(self.connection.cursor())
