@@ -96,10 +96,17 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # ── CORS ───────────────────────────────────────────────────
-CORS_ALLOWED_ORIGINS = config(
-    'FRONTEND_URL',
-    default='http://localhost:3000'
-).split(',')
+_base_origins = [
+    'https://www.grtechhq.com',
+    'https://grtechhq.com',
+    'https://grtech-site.onrender.com',
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+]
+_env_origins = [
+    o.strip() for o in config('FRONTEND_URL', default='').split(',') if o.strip()
+]
+CORS_ALLOWED_ORIGINS = list(dict.fromkeys(_base_origins + _env_origins))
 
 CORS_ALLOW_METHODS = ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS']
 CORS_ALLOW_HEADERS = ['content-type', 'accept', 'authorization']
