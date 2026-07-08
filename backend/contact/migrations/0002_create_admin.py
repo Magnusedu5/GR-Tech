@@ -18,7 +18,13 @@ def create_or_update_admin(apps, schema_editor):
         print('DJANGO_SUPERUSER_* env vars not set — skipping admin creation.')
         return
 
-    user, created = User.objects.get_or_create(username=username)
+    # Avoid get_or_create — it uses a savepoint which Turso/libsql doesn't support.
+    user = User.objects.filter(username=username).first()
+    if user is None:
+        user = User(username=username)
+        created = True
+    else:
+        created = False
     user.set_password(password)
     user.email        = email
     user.is_staff     = True
@@ -32,6 +38,7 @@ def create_or_update_admin(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
+    atomic = False  # RunPython must not be wrapped in a transaction (Turso/libsql)
 
     dependencies = [
         ('contact', '0001_initial'),

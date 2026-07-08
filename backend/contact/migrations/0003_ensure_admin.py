@@ -16,7 +16,15 @@ def ensure_admin(apps, schema_editor):
     email    = os.environ.get('DJANGO_SUPERUSER_EMAIL',    'magnusedu5@gmail.com')
     password = os.environ.get('DJANGO_SUPERUSER_PASSWORD', 'Mag123456789@')
 
-    user, created = User.objects.get_or_create(username=username)
+    # Avoid get_or_create — it uses a savepoint internally which
+    # Turso/libsql remote connections do not support.
+    user = User.objects.filter(username=username).first()
+    if user is None:
+        user = User(username=username)
+        created = True
+    else:
+        created = False
+
     user.set_password(password)
     user.email        = email
     user.is_staff     = True
@@ -30,6 +38,7 @@ def ensure_admin(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
+    atomic = False  # RunPython must not be wrapped in a transaction (Turso/libsql)
 
     dependencies = [
         ('contact', '0002_create_admin'),
