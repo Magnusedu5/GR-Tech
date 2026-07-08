@@ -5,7 +5,10 @@ Inherits the SQLite3 backend (same SQL dialect, same ORM) but replaces
 the underlying connection with a remote libsql_experimental connection.
 
 Key differences from sqlite3:
-- No isolation_level support → _set_autocommit is a no-op (auto-commits)
+- No isolation_level support → _set_autocommit is a no-op
+- Writes must be committed explicitly — libsql does NOT auto-commit per
+  statement; Django's autocommit assumption breaks this. We call
+  connection.commit() in close() so every request's writes persist.
 - Cursor needs to convert Django's %s placeholders to ? (libsql style)
 """
 import re
@@ -95,14 +98,34 @@ class DatabaseWrapper(sqlite3_base.DatabaseWrapper):
         pass
 
     def _start_transaction_under_autocommit(self):
-        # Don't issue explicit BEGIN — libsql remote connections auto-commit
-        # each statement. An explicit BEGIN would conflict with the connection's
-        # internal streaming state and raise "cannot start a transaction within
-        # a transaction" errors during Django's nested atomic() usage.
+        # Don't issue explicit BEGIN — libsql remote connections do not support
+        # Django's nested BEGIN/SAVEPOINT pattern.
         pass
 
     def _savepoint_allowed(self):
         return self.in_atomic_block
+
+    def _savepoint(self, sid):
+        # Turso does not support SAVEPOINTs — make them no-ops so that
+        # nested atomic() blocks (e.g. in DRF or Django internals) don't crash.
+        pass
+
+    def _savepoint_commit(self, sid):
+        pass
+
+    def _savepoint_rollback(self, sid):
+        pass
+
+    def close(self):
+        # libsql does NOT auto-commit: Django assumes autocommit mode but
+        # libsql buffers writes until an explicit commit. Commit here so
+        # every request's writes are persisted before the connection closes.
+        if self.connection is not None:
+            try:
+                self.connection.commit()
+            except Exception:
+                pass
+        super().close()
 
     def disable_constraint_checking(self):
         # Tell Django FKs are already disabled (avoids PRAGMA calls that
